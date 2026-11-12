@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teamcode;
+ackage org.firstinspires.ftc.teamcode.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Proto1_", group = "StarterBot")
-public class Proto1 extends OpMode {
+@TeleOp(name = "StarsTelop", group = "StarterBot")
+public class StarsTelop extends OpMode {
 
     // Declare OpMode members.
     private DcMotor leftFrontDrive = null;
@@ -27,7 +27,7 @@ public class Proto1 extends OpMode {
     private static final double SERVO_STOP = 0.6;
 
     private enum IntakeState { STOP, FORWARD, BACKWARD }
-    private IntakeState intakeState = IntakeState.STOP;
+    private org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState intakeState = org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.STOP;
     double launcherPower = 0.0;
 
     @Override
@@ -108,7 +108,7 @@ public class Proto1 extends OpMode {
 
         // Intake servo (gamepad2): left bumper toggles backward/forward
         if (gamepad2.leftBumperWasPressed()) {
-            intakeState = (intakeState == IntakeState.BACKWARD) ? IntakeState.FORWARD : IntakeState.BACKWARD;
+            intakeState = (intakeState == org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.BACKWARD) ? org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.FORWARD : org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.BACKWARD;
         }
 
         switch (intakeState) {
@@ -154,4 +154,3 @@ public class Proto1 extends OpMode {
         leftBackDrive.setPower(leftBackPower);
         rightBackDrive.setPower(rightBackPower);
     }
-}

@@ -47,9 +47,9 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
  * we will also need to adjust the "PIDF" coefficients with some that are a better fit for our application.
  */
 
-@TeleOp(name = "Starterbot_Nebula", group = "StarterBot")
+@TeleOp(name = "NebulaTelop", group = "StarterBot")
 //@Disabled
-public class Starterbot_Nebula extends OpMode {
+public class NebulaTelop extends OpMode {
 
     // Declare OpMode members.
     private DcMotor leftFrontDrive = null;
