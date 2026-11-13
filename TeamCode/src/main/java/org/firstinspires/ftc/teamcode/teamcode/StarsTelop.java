@@ -1,4 +1,4 @@
-ackage org.firstinspires.ftc.teamcode.teamcode;
+package org.firstinspires.ftc.teamcode.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -22,12 +22,12 @@ public class StarsTelop extends OpMode {
     double rightFrontPower;
     double leftBackPower;
     double rightBackPower;
-    private static final double SERVO_FORWARD = 0.3;
-    private static final double SERVO_BACKWARD = 0.6;
-    private static final double SERVO_STOP = 0.6;
+    private static final double SERVO_FORWARD = 1.0;
+    private static final double SERVO_BACKWARD = 0.0;
+    private static final double SERVO_STOP = 0.5;
 
     private enum IntakeState { STOP, FORWARD, BACKWARD }
-    private org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState intakeState = org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.STOP;
+    private IntakeState intakeState = IntakeState.STOP;
     double launcherPower = 0.0;
 
     @Override
@@ -89,26 +89,26 @@ public class StarsTelop extends OpMode {
         double strafe = gamepad1.left_stick_x;
         double turn = gamepad1.right_stick_x;
 
-        mecanumDrive(turn, strafe, forward);
+        mecanumDrive(forward, strafe, turn);
 
         // Intake motor (gamepad2): right trigger = in, left trigger = out
         double intakeMotorPower = 0.0;
         if (gamepad2.right_trigger > 0.5) {
-            intakeMotorPower = 1.0; //Change this value to 1.0 for max power inward
+            intakeMotorPower = 1.0;
         } else if (gamepad2.left_trigger > 0.5) {
-            intakeMotorPower = -1.0; //Change this value to -1.0 for max power outward
+            intakeMotorPower = -1.0;
         }
         intakeMotor.setPower(intakeMotorPower);
 
         // Launcher (gamepad2): right bumper toggles on/off
         if (gamepad2.rightBumperWasPressed()) {
-            launcherPower = (launcherPower == 0.0) ? 0.655 : 0.0; //Change *0.a* : 0.0 to change the power of launcher
+            launcherPower = (launcherPower == 0.0) ? 1.0 : 0.0;
         }
         launcher.setPower(launcherPower);
 
         // Intake servo (gamepad2): left bumper toggles backward/forward
         if (gamepad2.leftBumperWasPressed()) {
-            intakeState = (intakeState == org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.BACKWARD) ? org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.FORWARD : org.firstinspires.ftc.teamcode.teamcode.Proto1.IntakeState.BACKWARD;
+            intakeState = (intakeState == IntakeState.BACKWARD) ? IntakeState.FORWARD : IntakeState.BACKWARD;
         }
 
         switch (intakeState) {
@@ -154,3 +154,4 @@ public class StarsTelop extends OpMode {
         leftBackDrive.setPower(leftBackPower);
         rightBackDrive.setPower(rightBackPower);
     }
+}
